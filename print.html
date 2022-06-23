@@ -1,0 +1,492 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pipeline DAO DNA</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_intro.html"><strong aria-hidden="true">1.</strong> Introduction &amp; Project Brief</a></li><li class="chapter-item expanded "><a href="01_values.html"><strong aria-hidden="true">2.</strong> Values</a></li><li class="chapter-item expanded "><a href="02_components.html"><strong aria-hidden="true">3.</strong> Components</a></li><li class="chapter-item expanded "><a href="03_actors.html"><strong aria-hidden="true">4.</strong> Actors</a></li><li class="chapter-item expanded "><a href="04_workflows.html"><strong aria-hidden="true">5.</strong> Workflows</a></li><li class="chapter-item expanded "><a href="05_tech_and_mvp.html"><strong aria-hidden="true">6.</strong> Tech Stack &amp; MVP</a></li><li class="chapter-item expanded "><a href="06_questions.html"><strong aria-hidden="true">7.</strong> Open Questions</a></li><li class="chapter-item expanded "><a href="templates.html"><strong aria-hidden="true">8.</strong> More on Project Templats</a></li><li class="chapter-item expanded "><a href="treasury.html"><strong aria-hidden="true">9.</strong> On Treasury Elasticity</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Pipeline DAO DNA</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p><em>Pipeline</em> is a DAO protocol that synchronizes the goals of creators, publishers, producers, agents, influencers, and audiences, thus streamlining the processes of funding, creating, distributing, and profiting off intellectual and creative property.</p>
+<p>Its purpose is to connect creators with audiences by bulldozing the gatekeeping mechanisms of the past and creating self-organizing, autonomous economies in their place.</p>
+<h3 id="problem-statement"><a class="header" href="#problem-statement">Problem Statement</a></h3>
+<ul>
+<li>To be considered successful, art and entertainment products must satisfy the goals of three key constituents: the creator, the target audience, and the organization invested in production.</li>
+<li>Traditional <em>creator</em>→<em>publisher</em>→<em>market</em>→<em>feedback</em> loops suffer from the goals of these three constituents being at odds with one another:
+<ul>
+<li><strong>Creators strive to make a living by connecting to audiences.</strong></li>
+<li><strong>Consumers look for outstanding, fresh stories that they’ll love.</strong></li>
+<li><strong>Publishers minimize risk and maximize profit.</strong></li>
+</ul>
+</li>
+</ul>
+<p>The traditional publishing system, with its gatekeeping and mass-market inclinations, makes successful pieces of great entertainment a rarity (compared to what could be) and imposes unfair allocation and distribution of resources.</p>
+<p>See also <a href="https://spiritofspeed.medium.com/decentralized-autonomous-organizations-for-creatives-8dd4be7e09a2">https://spiritofspeed.medium.com/decentralized-autonomous-organizations-for-creatives-8dd4be7e09a2</a> for motivation and philosophy.</p>
+<p>As (hopefully) stated in this somewhat dated overview, a certain maturity level and field-specific skills are required of an organization producing entertainment products, and there are good reasons <em>why</em> such organizational specialization exists — that is, book publishers specialize in books, studios in movies, and so on.</p>
+<p>However, a key insight into these production processes is that they are extremely well researched and long established. At this junction, <em>if one team can do it, another team can do it as well</em>.</p>
+<p>The hurdle to that is, <em>Who has the time, the money, and the skill to organize the entire production and distribution pipeline</em>?</p>
+<h3 id="proposed-solution"><a class="header" href="#proposed-solution">Proposed Solution</a></h3>
+<ul>
+<li>Pipeline deconstructs and reassembles the processes of ideation, financing, production, promotion, and distribution in a decentralized fashion.</li>
+<li>Decisions on which projects to fund are made by the DAO community, based on direct voting, where votes are expressed in stablecoin amounts.</li>
+<li>Launched projects strictly adhere to production templates specific to the type of projects.</li>
+<li>Project funding is unlocked in stages and is milestone-based.</li>
+<li>Actors in each Pipeline (investors, creators, collaborators, influencers, curators, agents, etc) are issued profit-sharing tokens.</li>
+<li>Each project is closely followed by a designated body of DAO members (Emissaries and Wardens).</li>
+<li>Working against the interests of the DAO results in slashing of assets for members found to be in violation.</li>
+<li><em>Self-organizing</em> and <em>autonomous</em> are the key guiding principles.</li>
+</ul>
+<h1 id="success-criteria"><a class="header" href="#success-criteria">Success Criteria</a></h1>
+<ol>
+<li>Constant growth of the project base.</li>
+<li>Positive ROI for everyone involved.</li>
+<li>Emergence of new/improved project templates.</li>
+</ol>
+<h1 id="user-stories"><a class="header" href="#user-stories">User Stories</a></h1>
+<p>What will the user be able to do after the solution is shipped? Instead of describing detailed workflows here, lessgo just with basics.</p>
+<ul>
+<li><strong>Creative</strong> (Author, Creative Collective)
+<ul>
+<li>Propose a creative project and have it funded by the community based on reputation and creative merits</li>
+<li>Generate presales for the project during the funding/development process</li>
+<li>Deliver on project milestones helped by the team of collaborators</li>
+<li>Get exposure to the audience from day 1</li>
+<li>Earn fixed income while working on the project</li>
+<li>Earn royalties from the project past the delivery date</li>
+</ul>
+</li>
+<li><strong>Collaborator</strong>
+<ul>
+<li>Help make a creative project a reality by contributing necessary skills</li>
+<li>And earn income doing so</li>
+<li>Earn royalties from the project past the delivery date</li>
+</ul>
+</li>
+<li><strong>Governor</strong>
+<ul>
+<li>Vote on proposals/Invest in projects</li>
+<li>Vote on new project templates/pipelines</li>
+<li>Vote in/out emissaries and wardens monitoring projects</li>
+<li>Vote on project-related decisions that are above the paygrade of emissaries and wardens</li>
+<li>Earn royalties from the project past the delivery date</li>
+</ul>
+</li>
+<li><strong>Emissary/Warden</strong>
+<ul>
+<li>Track project activity and report back to the community</li>
+<li>Solve low-level issues with the project</li>
+<li>Raise project-related issues with Governors</li>
+<li>Earn royalties from the project past the delivery date</li>
+</ul>
+</li>
+<li><strong>Backer</strong>
+<ul>
+<li>Invest in projects</li>
+<li>Promote projects</li>
+<li>Receive free access to the end product</li>
+<li>Earn royalties from the project past the delivery date</li>
+</ul>
+</li>
+<li><strong>Influencer</strong>
+<ul>
+<li>Promote projects</li>
+<li>Earn royalties from the promoted projects past the delivery date</li>
+</ul>
+</li>
+<li><strong>Distributor</strong>
+<ul>
+<li>Make the digital/physical expressions of the product’s deliverables available on the market</li>
+<li>Earn royalties on the sales</li>
+</ul>
+</li>
+<li><strong>Agent/Producer</strong>
+<ul>
+<li>Bring together participants for a creative endeavour</li>
+<li>Propose projects</li>
+<li>Earn royalties from projects past the delivery date</li>
+</ul>
+</li>
+<li><strong>Champion</strong>
+<ul>
+<li>Raise public awareness wrt a project that seems worth investing into</li>
+<li>Earn a fixed reward when the project is funded</li>
+<li>Earn royalties from the project past the delivery date</li>
+</ul>
+</li>
+</ul>
+<h1 id="current-scope"><a class="header" href="#current-scope">Current Scope</a></h1>
+<ul>
+<li>The foundation protocol for Pipeline DAO</li>
+<li>Tokenomics for Pipeline DAO</li>
+<li>Built-in gig economy</li>
+<li>The decentralised digital production pipeline to support existing project templates</li>
+<li>Project templates:
+<ul>
+<li><em>Books</em>. Fiction, Non-Fiction, Technical.</li>
+<li><em>Film</em>. Short, Feature, Documentary, Animation.</li>
+<li><em>Research Grant</em>.</li>
+</ul>
+</li>
+<li>Legal support infrastructure by way of the gig economy</li>
+<li>Long-term partnerships with distribution companies, on-demand streaming services</li>
+</ul>
+<h3 id="requirements"><a class="header" href="#requirements">Requirements</a></h3>
+<ul>
+<li>Foundation protocol</li>
+<li>Tokenomics</li>
+<li>Gig economy</li>
+<li>Decentralized digital production pipeline</li>
+<li>Project templates</li>
+</ul>
+<h3 id="non-requirements"><a class="header" href="#non-requirements">Non-Requirements</a></h3>
+<p>(add late in the process)</p>
+<ul>
+<li>Legal support infrastrucure</li>
+<li>Long-term partnerships</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="values--principles"><a class="header" href="#values--principles">Values &amp; Principles</a></h1>
+<p>Note: the word “actors” here means “participants with agency,” not to be confused with film actors.</p>
+<h3 id="autonomy"><a class="header" href="#autonomy">Autonomy</a></h3>
+<ol>
+<li>Pipeline’s protocol and infrastructure run independently of any external shareholders.</li>
+<li>Actors participating in the protocol and using its infrastructure are sovereign decision makers.</li>
+</ol>
+<h3 id="decentralization"><a class="header" href="#decentralization">Decentralization</a></h3>
+<ol>
+<li>Pipeline’s protocol and infrastructure run in a decentralized, unstoppable fashion.</li>
+<li>During the bootstrap period, the system will temporarily rely on centralized solutions (mostly for UI purposes.)</li>
+<li>Once the system is fully operational, all upgrades and augmentations will be voted on by the community of actors.</li>
+</ol>
+<h3 id="self-organization"><a class="header" href="#self-organization">Self-Organization</a></h3>
+<p>Pipeline replaces decision-making by a committee of high-level stakeholders with decision-making by a community of equal peers. Project templates, creative visions, shared profit, and market feedback are to become the lines along which the organizing activity takes place. </p>
+<h3 id="accountability"><a class="header" href="#accountability">Accountability</a></h3>
+<p>Peers being equal also means they’re equally reponsible for the outcomes. Every single actor is accountable to the community and the protocol, which, together, will define how to best punish harmful behaviors. </p>
+<p>Counterbalancing that is reputation. The better the rep, the more the protocol will trust an actor with making decisions that reflect on the whole of Pipeline.</p>
+<h3 id="predictability"><a class="header" href="#predictability">Predictability</a></h3>
+<p>Established production processes and best practices are the guiding light for Pipeline projects.</p>
+<p>This concerns the technical operations involved in creating a product and the production values.</p>
+<p>But has no bearing on the creative side of things where unpredictability and intuitive search are often winning strategies.</p>
+<h3 id="creative-sovereignty"><a class="header" href="#creative-sovereignty">Creative Sovereignty</a></h3>
+<p>Creators and creative collectives are granted full creative freedom as long as their work is not in violation of third party rights and does not promote morals disrespectful to humans.</p>
+<p>There will be lines of division in matters of morals, and it is ultimately up to the DAO to decide which lines can be crossed for artistic reasons and based on story requirements… and which are completely off-limits.</p>
+<h3 id="respect-of-rights"><a class="header" href="#respect-of-rights">Respect of Rights</a></h3>
+<ol>
+<li>Work produced through Pipeline shall not violate copyright or other relevant rights knowingly.</li>
+<li>Certain actors in the community (Champions, Emissaries, Wardens) could potentially be responsible for reviewing prior art to avoid situations of unpremeditated violations.</li>
+</ol>
+<h3 id="openness"><a class="header" href="#openness">Openness</a></h3>
+<p>Anyone can be a Pipeline actor.</p>
+<h3 id="meritocracy"><a class="header" href="#meritocracy">Meritocracy</a></h3>
+<ol>
+<li>Anyone can be a Pipeline actor based on what they bring to the table. </li>
+<li>Not based on how rich they are. Pipeline is to be averse to meritocracy.</li>
+</ol>
+<h3 id="evolvability"><a class="header" href="#evolvability">Evolvability</a></h3>
+<p>A stagnant system is a dead one. Within the confines of values and principles set here, Pipeline is expected to evolve over time based on decisions made by the community.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="key-components-of-the-pipeline-architecture"><a class="header" href="#key-components-of-the-pipeline-architecture">Key Components of the Pipeline Architecture</a></h1>
+<h3 id="dao--mini-daos"><a class="header" href="#dao--mini-daos">DAO &amp; mini-DAOs</a></h3>
+<p>The <em>top-level Pipeline DAO</em> is comprised of Governors (based on actual contributions to the Treasury or actual projects.)</p>
+<p>This would be a relatively standard piece of governance tech, where the directions taken by the protocol are proposed and vote on by the community, and all the tech upgrades go through the same procedure.</p>
+<p>Changes to project templates, new project templates, core processing logic would all be decided here.</p>
+<p>Each project is a mini-DAO, and the decisions made here all project-level and are based around project templates.</p>
+<h3 id="treasury--shareholding-accounting"><a class="header" href="#treasury--shareholding-accounting">Treasury &amp; Shareholding Accounting</a></h3>
+<p>The tokenomics for both types of DAOs interweaves with both the decision-making processes and the execution of templates. Separate on-chain logic engines will be responsible for accounting on both and feed back into the voting process.</p>
+<p>(Since having voting rights will depend on being a liquidity contributor.)</p>
+<h3 id="rep-tracking-system"><a class="header" href="#rep-tracking-system">Rep Tracking System</a></h3>
+<p>Based on prior performance, all actors will be assigned reputation points. Details TBD.</p>
+<h3 id="project-templates"><a class="header" href="#project-templates">Project Templates</a></h3>
+<p>A project template includes all the parameters necessary to assess viability of a project.</p>
+<p>In particular:</p>
+<ul>
+<li>Project type;</li>
+<li>Project deliverables;</li>
+<li>Project milestones;</li>
+<li>Costs associated with each milestone;</li>
+<li>Types of collaborators involved;</li>
+<li>Costs of achieving milestones;</li>
+<li>The order of operations of the project’s state machine.</li>
+<li>And other stuff. :)</li>
+</ul>
+<h3 id="decentralized-production-pipeline"><a class="header" href="#decentralized-production-pipeline">Decentralized Production Pipeline</a></h3>
+<p>DPP is a combination of</p>
+<ul>
+<li>persistent storage systems such as Arweave, </li>
+<li>a finite-state machine interpreter for project templates, and</li>
+<li>certain DAO mechanism that help navigate the pipeline</li>
+</ul>
+<h3 id="collab-marketplace"><a class="header" href="#collab-marketplace">Collab Marketplace</a></h3>
+<p>This is not a separate entity, but part of the UI.</p>
+<h3 id="ui"><a class="header" href="#ui">UI</a></h3>
+<p>The (initially centralized) application that ties everything together and serves as:</p>
+<ul>
+<li>A discovery mechanism</li>
+<li>A collab marketplace</li>
+<li>A governance platform</li>
+<li>A project tracker</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="actors"><a class="header" href="#actors">Actors</a></h1>
+<p>Pipeline upgrades the traditional model of crowdfunding/VC investment by bringing in all the key actors of the process, or at least that is the plan.</p>
+<p>While creators and creative collectives have certain freedom in their selection of collaborators, a project where all key actors come from the same ecosystem and are transparent via their actions being public increases the odds of a project succeeding. </p>
+<p>(On that note and to be discussed elsewhere, a 100% in-ecosystem fulfillment of roles on a project would be an optional, but highly desirable project parameter.)</p>
+<p>Actors need to be financially motivated in addition to being in love with a project, hence every actor is entitled to be rewarded through either fixed pay, equity, or a combination of fixed &amp; equity pay.</p>
+<p>In terms of voting power and determining the directions the DAO and specific projects take, not all actors are equal.</p>
+<p>The following are the current general categories of actors; these may be expanded as our understanding of what’s involved in successfully delivering a creative project grows.</p>
+<h3 id="governors"><a class="header" href="#governors">Governors</a></h3>
+<p>Governors are top-tier investors with voting rights. These are the early birds who vote for a project’s launch by contributing liquidity of certain magnitude. Based on how the project is structured and the size of the overall investment, Governors may choose to be the only source of funds, the leading source of funds, or <em>a</em> source of funds.</p>
+<p>We (will potentially) establish a reasonable threshold of contributions from Governors under which a Pipeline project may not be launched. For instance, “for a project with overall cost of 1m$ USD at least 20% of funds must come from Governors.”</p>
+<p>Governors not only bear higher requirements for their contributions (the magnitude of), but also incur higher absolute risk of loss and have more skin in the game (subject to slashing) than potentially any other actor.</p>
+<p>Thus their voting power – on non-creative decisions – is <em>triple</em> that of other actors.</p>
+<h3 id="oversight-committees"><a class="header" href="#oversight-committees">Oversight Committees</a></h3>
+<p>In addition to setting projects in motion, Governors will vote in an oversight committee for each. A committee consists of Emissaries and is led by Warden. The purpose of an Oversight Commitee is to monitor and aide the execution of a project without interfering with the creative force behind it.</p>
+<p>An OC helps creators execute on the creative vision and go back to the contributing Governors for decisions and support whenever a dispute arises or the project veers off-track or additional funding is required based on valid arguments. </p>
+<p>The Committee will also ensure that a project underway will not knowingly violate copyright and other rights by working alongside with the legal support team. </p>
+<p>A Governor can also be a Warden, the person/entity responsible for general oversight and organizational issues, but not an Emissary.</p>
+<p>Emissaries are a supporting role. For instance, there will routinely be a technical Emissary to help creators figure out tech issues, and potentially an aide Emissary to keep communications around and within a project in order.</p>
+<p>Oversight Committees hold no voting power in the project, facilitation (and getting out the way when they’re not needed) is their key activity.</p>
+<h3 id="champions"><a class="header" href="#champions">Champions</a></h3>
+<p>Discovery is a hard problem to solve. Everyone and their grandmother seem to have ideas, but even those who are capable of executing often find it impossible to do so in a vacuum.</p>
+<p>The expectation is that the Pipeline community will grow organically and so will the number of projects launched, but for that to happen we might want word-of-mouth to actually go around. Authors often will not be able to solve this on their own.</p>
+<p>For a project freshly submitted and not attracting sufficient interest from the existing body of Governors, and even for a project partially funded by Governors, it’s beneficial if Champions exist, social butterflies that bring in more Governors and/or Backers and any other types of participants. </p>
+<p>Champions receive a small equity in the project, based on the amount of funding they’ve attracted (thinking simple affiliate links here.) They do not vote on the project matters.</p>
+<h3 id="backers"><a class="header" href="#backers">Backers</a></h3>
+<p>When a project isn’t funded in its entirety by Governors, it is open for contributions by Backers who will fill in the missing funds. In such case, anyone with access to Pipeline may choose to become a Backer and receive project-specific equity token in return.</p>
+<p>Backers also receive voting rights in the project. </p>
+<h3 id="authorcreatorcreative-collective"><a class="header" href="#authorcreatorcreative-collective">Author/Creator/Creative Collective</a></h3>
+<p>The leading creative mind or minds behind a project. Not to be confused with the entire team working to make project a reality. This would be a person or persons who have the final say in the project’s creative vision and will steer the team (if there’s one) toward that vision.</p>
+<p>Author receives a share in the project and depending on the project parameters could also be receiving fixed payments while working on the project.</p>
+<p>Like Governors, they will also receive a disproportional share of the voting power. TBD.</p>
+<h3 id="collaborators"><a class="header" href="#collaborators">Collaborators</a></h3>
+<p>Collaborators help Authors execute their vision. All types of skilled specialists required to make a creative project reality fall into this group.</p>
+<p>A special type of a collaborator is a QA Collaborator. This person will ensure that milestones are delivered on with due quality. (Note: might want to make this one an Emissary actually.)</p>
+<h3 id="influencers"><a class="header" href="#influencers">Influencers</a></h3>
+<p>Influencers are a subtype of Backers; they do not invest financially (although they could), but based on documented promotional support for a project they’re eligible for remuneration in much the same way.</p>
+<h3 id="distribution-outlet"><a class="header" href="#distribution-outlet">Distribution Outlet</a></h3>
+<p>Once the project has delivered a product, one or more distribution outlets will begin making the product available to the general public. Governors, Committee members, Wardens, Collaborators, and Influencers are all entitled to receive the product/access to the product free of charge. This makes everyone else potentially interested in the product a paying customer.</p>
+<h3 id="agents"><a class="header" href="#agents">Agents</a></h3>
+<p>Anyone can submit a project. This opens the platform to existing entities, such as established agents, publishers, rights owners, etc. There’s an open question of how to prevent such existing entities from implementing their usual balls-busting practices, we will address that later.</p>
+<p>Agents will also work on exploiting IP emerging under Pipeline by engineering and closing media deals, which would be a part of a project’s life cycle past the point of delivering a tangible product.</p>
+<h3 id="law-actors"><a class="header" href="#law-actors">Law Actors</a></h3>
+<p>It is paramount for a Pipeline project to both abstain from violating copyrights and, to the extent possible, to keep others from violating its own intellectual property. To this end, the protocol must be endowed with an international legal team providing intellectual property operations on the boundaries between the web3 world and the real world.</p>
+<p>The legal team is also a shareholder in the projects it administers and is held accountable by the community and the authors behind the projects.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="workflows"><a class="header" href="#workflows">Workflows</a></h1>
+<h3 id="request-for-proposals--end-product"><a class="header" href="#request-for-proposals--end-product">Request for Proposals → End Product.</a></h3>
+<p>We start with a public need that could be satisfied by crowdfunding a production pipeline. RfPs could be targeted at specific producers (in the general sense of the word)</p>
+<h3 id="request-for-funding--end-product"><a class="header" href="#request-for-funding--end-product">Request for Funding → End Product.</a></h3>
+<p>We start with an existing idea that, if it gets enough traction and is funded, will result in a product.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tech-stack--mvp"><a class="header" href="#tech-stack--mvp">Tech Stack &amp; MVP</a></h1>
+<h3 id="smart-contract-networks"><a class="header" href="#smart-contract-networks">Smart Contract Networks</a></h3>
+<p>Ethereum L1 EVM/Solidity w/outlook of a ZK Rollups playing an increasing role.</p>
+<p>Despite the recent market downturn, I do feel Ethereum is where considerable resources and attention are and will be for many years.</p>
+<p>The two potentially currently viable options for ZK Rollups are zkSync and StarkNet. Neither is ready for prime-time, but they probably will mature and become more production-ready in the time that it takes to develop Pipeline, at which point parts of the system could be migrated.</p>
+<h3 id="persistent-storage"><a class="header" href="#persistent-storage">Persistent Storage</a></h3>
+<p>During the production stage we’ll mostly be dealing with digital deliverables, and we want to hedge against loss of artifacts. arweave is a solid pay-one-store-forever system, and the fees, compared to the project costs are negligible.</p>
+<p>It would be absolutely affordable to publish all milestone deliverables on arweave to both keep the community in the loop wrt project progress and to make sure nothing is ever lost in an accident. </p>
+<p>Certain measures might be taken to restrict access to these resources, such as encryption that only allows actors involved in a specific project to view these artifacts. When the project is completed, this view access will be revoked. </p>
+<p>This doesn’t prevent actors from downloading artifacts. Which, we might as well say, is by design since they’re in one way or another are paying for the work to be done and as long as they do not circulate these artifacts outside of the community (we could have a EULA and digital fingerprinting in place to track such activity), we’re fine.</p>
+<h3 id="ui-1"><a class="header" href="#ui-1">UI</a></h3>
+<p>React doesn’t seem a bad choice for this one since it’s shaping to be a large-ish system.</p>
+<h3 id="off-chain-backend"><a class="header" href="#off-chain-backend">Off-Chain Backend</a></h3>
+<p>Node.js</p>
+<h3 id="mvp"><a class="header" href="#mvp">MVP</a></h3>
+<p>For the MVP I would suggest taking a relatively simple project template (TBD) and fast-tracking the parts of the system that would make it possible to demonstrate it in action. Potentially deployed on a testnet first.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="questions"><a class="header" href="#questions">Questions</a></h1>
+<h3 id="how-do-we-generate-hype-"><a class="header" href="#how-do-we-generate-hype-">How do we generate hype? :)</a></h3>
+<p>Not a big fan of that part, but hype could be useful.</p>
+<p>Open to suggestions.</p>
+<p>The hype detractor of the system as described is the absence of speculative earnings, at least initially.</p>
+<h3 id="value-extraction"><a class="header" href="#value-extraction">Value Extraction?</a></h3>
+<p>Initially I thought the protocol would take a small fee from all the projects Pipeline launches.</p>
+<p>But again, open to suggestions because after reading about hyperstructures I’m somewhat on the fence about this approach.</p>
+<p>LMK your thoughts.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="more-on-project-templates"><a class="header" href="#more-on-project-templates">More on Project Templates</a></h1>
+<p>It’s tempting to say that this and that DAO is going to be able to fund any kinds of projects, but this approach pushes the risks to stratospheric levels, and the DAO is then faced with the ages-old investment “adage”: you don’t really know anything, so spray and pray. </p>
+<p>Pipeline aims to disrupt <em>the way certain creative products</em> are <em>produced</em> and distributed. It concerns itself with <em>known production quantities</em> while also avoiding inserting itself into the creative process.</p>
+<p>We could loosely define Pipeline as a replacement for the centralized “studio” system, where all functions of a vertically-integrated publisher/studio/distributor behemoth are replaced with autonomous, decentralized operational units that all act together towards much the same goals, but in a fairer fashion and with more efficient access to markets .</p>
+<p>To deliver on this promise, we want less chaos and pivoting, like in startup enterprises, and more of established processes like in well-researched products.</p>
+<p><em>In fact, it would serve Pipeline well to simply adopt the technical-level conveyor belts underpinning the production and distribution of the traditional forms of written and visual material.</em></p>
+<p>For instance, we don’t need to invent the wheel where book writing is concerned – even though there are variations in how exactly writers move from milestone to milestone and which transformations and when are subsequently applied to the manuscript – where Pipeline is concerned, the milestones are likely to be the same for any book.</p>
+<p>Say, writers famously schism themselves into plotters and pantsers. Plotters plan everything out (which often causes writer’s block) and then set out to write; pantsers just write until it’s done (which more often causes regret and rewrites).</p>
+<p>The nature of the creative process, however, is such that at the end there’s no market advantage to either approach. Ultimately, both types of writers will arrive at multiple manuscript drafts, each draft hopefully stronger than the last. </p>
+<p>They will also inevitably break down books into chapters to tackle the humongous task piecemeal, so here already we’re beginning to see the seeds of a template.</p>
+<p>We could consider chapters low-level deliverables, and drafts, major milestones. </p>
+<p>On both, there will be back-and-forth with an editor or several, either real-time or iterative, until finally all parties are satisfied with the result. And we could have an illustrator process running in parallel, with its own deliverables (images for the book.)</p>
+<p>I’m just briefly touching on the specifics here (as more research is required), but the key takeaway is that the whole process can be formalized using a business process modeling language, and that formal description becomes a <em>project template</em>.</p>
+<p>A process expressed in a business process modeling language will closely resemble a finite state machine (an FSM). An FSM is a computation model which can be expressed in software, and both BPMLs and FSMs deals in <em>actors</em>, <em>states</em>, <em>input events</em> and <em>output events</em>. Coincidentally, this is the same model smart contracts follow. When an input event changes the state of a smart contract and optionally produces an output event, we call such transformation a <em>transaction</em>.</p>
+<p>So now, at least at the conceptual level, we see that it’s possible to map a creative process to a smart contract by formally describing the “business process of the creative process.”</p>
+<p>Ultimately, the idea here is to have multiple Project Templates and a processing engine running the templates, but also be able to augment existing templates and create new one, through Pipeline DAO’s proposal/voting process.</p>
+<p>Instead of writing a new smart contract every time there’s an augmentation or a new template, it should be possible to develop a more generalized template execution engine that would interpret the templates.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="on-treasury-elasticity"><a class="header" href="#on-treasury-elasticity">On Treasury Elasticity</a></h1>
+<p>Various ponzi-like setups promising high APY, which is self-cannibalizing in the long run and isn’t sustainable without ongoing hype, are another type of “tempting” crypto propositions.  Liquidity providers in such pools jump ship at the first sign of trouble, and the protocol in question quickly becomes insolvent due to the domino effect.</p>
+<p>I will now explain how this approach, sadly, doesn’t work in our case for attracting hype type liquidity to the project.</p>
+<p>The way I’m envisioning Pipeline DAO utilizing the liquidity from the treasury is, <em>funding projects</em> and <em>generating voting rights</em>.</p>
+<p>When a project is funded, liquidity will be locked in that project and parties are now holders of the project-specific token that confers shareholding superpowers :) on these parties. When the project is released and (hopefully) begins generating ROI, the first thing that happens is that the initial investment is repaid in full, so everyone involved gets their money back and can now either invest in something else or take the funds out of the treasury.</p>
+<p>The project-specific token will keep generating income forever (or until the date set in the project parameters). It becomes its own asset and can be traded. The ROI performance is also a metric that can be used to assess the wisdom of the DAO.</p>
+<p>DAO members will retain their voting rights even as the liquidity goes toward funding projects. These can be exercised for voting on project matters and global DAO matters, like augmenting and adding project templates.</p>
+<p>In all, DAO members <em>do not</em> get ROI until they’re actively investing, but they do get to vote.</p>
+<p>This will probably lead to situations, where most projects are funded just-in-time, and the treasury holdings being zero when a project is submitted, although not necessarily. I call this property of Pipeline’s treasury <em>elasticity</em>: we don’t care how much is in the treasury, what we do care about is promising projects getting funded. When we have an attractive submission that caters to Pipeline’s core values, it’s up to the community in general to decide whether they want to go with it and fund the treasury with the amount necessary to launch.</p>
+<p>If there’s no financial incentive to locking funds in the treasury, hype liquidity providers will not care to provide liquidity. In theory we could design a mechanism by which locking money in treasury does provide financial incentive; but I do feel it would be not so straightforward to do without destabilizing or tainting parts of the system.</p>
+<p>Another thing to note here is that projects funded through Pipeline do not necessarily promise the same returns as crypto investors are used to in general. We’re talking more conservative investing, which still has opportunities for big returns, but such cases will mostly be rooted in non-speculative scenarios.</p>
+<p>As time goes, however, projects are released to the general public and start bringing in ROI, the reputation of certain investors is going to rise (while reputation of others will decline), giving hype liquidity a way in. We could consider allowing “piggyback investments” where funding decisions are delegated by liquidity providers to DAO members with good history of investing and these DAO members get access to more capital, which allows them to fund more projects or larger projects. Piggyback investors do not attain voting rights, but they do become shareholders in projects funded by reputable DAO members. </p>
+<p>Because the demand for liquidity is elastic, this does not guarantee everyone a way in. Reputable DAO members could be putting out slots to be filled, based on the projects that are currently under consideration. For instance, in situations when a reputable investor considers a project a great investment, but the reception of the DAO as a whole isn’t warm enough to launch the project, they could seek piggyback capital.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
