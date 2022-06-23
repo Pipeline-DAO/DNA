@@ -6,3 +6,5 @@
 - [Workflows](./04_workflows.md)
 - [Tech Stack & MVP](./05_tech_and_mvp.md)
 - [Open Questions](./06_questions.md)
+- [More on Project Templats](./templates.md)
+- [On Treasury Elasticity](./treasury.md)
